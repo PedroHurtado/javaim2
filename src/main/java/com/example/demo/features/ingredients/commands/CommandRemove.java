@@ -2,7 +2,7 @@ package com.example.demo.features.ingredients.commands;
 
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.common.repository.Remove;
 import com.example.demo.domain.Ingredient;
 
-@Configurable
+@Configuration
 public class CommandRemove {
 
     @RestController
