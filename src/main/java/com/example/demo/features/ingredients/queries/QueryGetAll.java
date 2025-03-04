@@ -3,6 +3,7 @@ package com.example.demo.features.ingredients.queries;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,7 @@ import com.example.demo.common.repository.Query;
 import com.example.demo.domain.Ingredient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
+@Configuration
 public class QueryGetAll {
     public record  Request(
         String name,
@@ -34,13 +35,13 @@ public class QueryGetAll {
             this.service =service;
         }
     
-        @GetMapping("/api/v1/ingredients")          
+        @GetMapping("/api/v1/ingredients")     
         ResponseEntity<?> handler(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "25") Integer size
         ){
-            var request = new Request(name, page, size);
+            var request = new Request(name,page,size);
             return ResponseEntity.status(200).body(
                 service.handler(request)            
             );
@@ -62,14 +63,15 @@ public class QueryGetAll {
         }
         @Override
         public List<Response> handler(Request request) {            
-             return repository
+             var result =  repository
                 .getData().stream()
                 .filter(i->                    
-                        (request.name().equals(null) ||
+                        (request.name()==null ||
                         i.getName().contains(request.name()))                    
                 )
                 .map(i->new Response(i.getId(), i.getName(), i.getCost()))
                 .toList();
+            return result;
         }
     }
 }
