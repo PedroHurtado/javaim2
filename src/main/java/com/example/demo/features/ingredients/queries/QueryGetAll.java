@@ -64,11 +64,13 @@ public class QueryGetAll {
         @Override
         public List<Response> handler(Request request) {            
              var result =  repository
-                .getData().stream()
+                .getData().stream()                
                 .filter(i->                    
                         (request.name()==null ||
                         i.getName().contains(request.name()))                    
-                )
+                )  
+                .skip(request.page() * request.size())              
+                .limit(request.size())
                 .map(i->new Response(i.getId(), i.getName(), i.getCost()))
                 .toList();
             return result;
