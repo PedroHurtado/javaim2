@@ -4,13 +4,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.example.demo.common.exceptions.NotFoundException;
+import com.example.demo.common.exceptions.HttpException;
 
 @ControllerAdvice
-public class NotFoundExceptionHandler {
+public class GlobalExceptionHandler {
     
-    @ExceptionHandler(NotFoundException.class)
-    ResponseEntity<?> notFound(NotFoundException ex){
-        return ResponseEntity.status(404).body(null);
+    @ExceptionHandler(HttpException.class)
+    ResponseEntity<?> notFound(HttpException ex){
+        return ResponseEntity.status(ex.getCode()).body(null);
     }
 }
