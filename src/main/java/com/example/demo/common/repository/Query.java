@@ -1,11 +1,11 @@
 package com.example.demo.common.repository;
 
-import java.util.stream.Stream;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.common.BaseEntity;
 
-public interface Query<T extends BaseEntity> extends Data<T>  {
-    default Stream<T> query(){
-        return getData().stream();
+public interface Query<T extends BaseEntity, ID> extends Data<T,ID>  {
+    default JpaRepository<T,ID> query(){
+        return getData();
     }
 }

@@ -57,13 +57,13 @@ public class QueryGetAll {
     }
     @Component
     public class ServiceImpl implements Service{
-        public final Query<Ingredient> repository;
-        public ServiceImpl(final Query<Ingredient> repository){
+        public final Query<Ingredient,UUID> repository;
+        public ServiceImpl(final Query<Ingredient,UUID> repository){
             this.repository = repository;
         }
         @Override
         public List<Response> handler(Request request) {            
-             var result =  repository
+             /*var result =  repository
                 .getData().stream()                
                 .filter(i->                    
                         (request.name()==null ||
@@ -73,7 +73,8 @@ public class QueryGetAll {
                 .limit(request.size())
                 .map(i->new Response(i.getId(), i.getName(), i.getCost()))
                 .toList();
-            return result;
+            return result;*/
+            return null;
         }
     }
 }

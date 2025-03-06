@@ -1,10 +1,9 @@
 package com.example.demo.common.repository;
 
-
-import java.util.Set;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.common.BaseEntity;
 
-public interface Data<T extends BaseEntity> {
-    Set<T> getData();
+public interface Data<T extends BaseEntity,ID>  {
+    JpaRepository<T,ID> getData();
 }

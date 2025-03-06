@@ -52,8 +52,8 @@ public class CommandCreate {
     @Component
     public class ServiceImpl implements Service {
 
-        private final Add<Ingredient> repository;
-        public ServiceImpl(final Add<Ingredient> repository){
+        private final Add<Ingredient, UUID> repository;
+        public ServiceImpl(final Add<Ingredient,UUID> repository){
             this.repository = repository;
         }
         @Override

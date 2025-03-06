@@ -6,13 +6,20 @@ import java.util.UUID;
 
 import com.example.demo.common.BaseEntity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+
+@Entity
 public class Pizza extends BaseEntity {
-    private static final Double PROFIT = 1.20D;
+    private static final Double PROFIT = 1.20D;    
     private String name;
     private String description;
     private String url;
-    private final Set<Ingredient> ingredients;
-
+    @ManyToMany
+    private  Set<Ingredient> ingredients = new HashSet<>();
+    protected Pizza(){
+        super(UUID.randomUUID());
+    }
     protected Pizza(
             final UUID id,
             String name,

@@ -1,0 +1,53 @@
+ORM(Object Relational Mapping)
+
+¿Que soluciona un ORM?
+
+Impedance Mistmacth
+https://en.wikipedia.org/wiki/Object%E2%80%93relational_impedance_mismatch
+
+Pizza->[Ingredients]
+
+Pizza               Ingredient
+      Pizza-Ingredient(n-m)
+
+       pizza-id,ingredient_id
+
+Codefirst->Objetos->Mapeo a tablas(DDD)
+DatabaseFirst->Tablas->Objetos(Modelo anemico, un modelo sin logica)
+
+class Pizza
+class Ingredient
+class PizzaIngredient
+
+¿Que patrones de diseño implementa un orm?
+
+Repository Pattern->UOW(Unit of work)
+
+save->UOW
+
+Estado
+    get->entidad en memoria (read)
+    udpate->(update)->proxi->setter
+    insert(insert)
+    remove(remove)
+
+try {
+    open connection
+    begint transaction
+    instrucciones insert,update,delete
+    commit  transaction    
+}
+catch {
+    rollback transaction    
+}
+finally {
+    elimina el estado
+    close connection
+}
+
+@Entity
+@Id
+@Column
+
+@ManyToMany
+@Hamany
