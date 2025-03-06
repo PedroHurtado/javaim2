@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.common.repository.Get;
@@ -30,7 +31,10 @@ public class QueryGet {
             this.service = service;
         }
         @GetMapping("/api/v1/ingredients/{id}")     
-        ResponseEntity<?> handler(@PathVariable UUID id){
+        ResponseEntity<?> handler(
+            @RequestHeader(name="x-dni") String dni,
+            @PathVariable UUID id
+        ){
 
             return ResponseEntity
                 .status(200)
