@@ -11,7 +11,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) {
         return User.builder()
                    .username(username)
-                   .password("password")                   
+                   .password("password")  
+                   .authorities("USER")                 
                    .build();
     }
 }
