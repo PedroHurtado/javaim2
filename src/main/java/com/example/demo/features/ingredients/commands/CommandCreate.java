@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.common.repository.Add;
 import com.example.demo.domain.Ingredient;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -27,8 +26,7 @@ public class CommandCreate {
             Double cost) {
     }
 
-    @RestController
-    @CrossOrigin(origins = "*", maxAge = 3600)
+    @RestController    
     public class Controller {
 
         private final Service service;
