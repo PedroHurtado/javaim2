@@ -59,6 +59,7 @@ public class CommandCreate {
         @Override
         public Response handler(Request request) {
 
+            //reqiest.validate()
             var ingredient = Ingredient.create(
                 request.name(), 
                 request.cost());
