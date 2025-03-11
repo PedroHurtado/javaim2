@@ -2,6 +2,12 @@ package com.example.demo;
 
 import java.sql.*;
 
+import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +15,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		jdbc();
+        locale();
+        locale2();
+        locale3();
+		//jdbc();
 		SpringApplication.run(DemoApplication.class, args);
 		
 	}
@@ -40,5 +49,35 @@ public class DemoApplication {
         }
 
 	}
+
+    static void locale(){
+        Locale defaultLocale = Locale.getDefault();
+        System.out.println("Idioma por defecto: " + defaultLocale.getLanguage());
+        System.out.println("País por defecto: " + defaultLocale.getCountry());
+
+        // Crear un Locale específico para España
+        Locale spainLocale = new Locale("es", "ES");
+        System.out.println("Ejemplo Locale España: " + spainLocale.getDisplayName());
+    }
+
+    static void locale2(){
+        Locale spanishLocale = new Locale("es", "ES");
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", spanishLocale);
+
+        System.out.println(bundle.getString("greeting"));
+        System.out.println(bundle.getString("farewell"));
+    }
+
+    static void locale3(){
+        Locale localeFR = new Locale("fr", "FR");
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy", localeFR);
+        System.out.println("Fecha en francés: " + today.format(formatter));
+
+        // Formateo de número en Alemania
+        Locale localeDE = new Locale("de", "DE");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(localeDE);
+        System.out.println("Precio en Alemania: " + currencyFormatter.format(1234.56));
+    }
 
 }
